@@ -12,7 +12,7 @@ class MyFrame extends JFrame {
 		Mod.getMods(game);
 		this.setTitle("My Paradox Mod Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(new GridLayout(Mod.listOfMods.length + 2, 1));
+		this.setLayout(new GridLayout(Mod.listOfMods.size() + 2, 1));
 
 		makeCheckBoxes();
 
@@ -31,10 +31,10 @@ class MyFrame extends JFrame {
 	}
 
 	private void makeCheckBoxes() {
-		checkBoxes = new JCheckBox[Mod.listOfMods.length];
+		checkBoxes = new JCheckBox[Mod.listOfMods.size()];
 		for (int i = 0; i < checkBoxes.length; i++) {
 			checkBoxes[i] = new JCheckBox();
-			checkBoxes[i].setText(Mod.listOfMods[i].getName());
+			checkBoxes[i].setText(Mod.listOfMods.get(i).getName());
 			System.out.println(checkBoxes[i].getText());
 			int finalI = i;
 			checkBoxes[i].addActionListener(e -> {

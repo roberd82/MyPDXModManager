@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.io.File;
+import java.util.ArrayList;
 
 class Mod {
 
 	static String[] games = {"Crusader Kings II", "Crusader Kings III", "Europa Universalis IV", "Hearts of Iron IV"};
-	static File[] listOfMods;
+	static ArrayList<File> listOfMods = new ArrayList<>();
 
 	static void getMods(int game) {
 
@@ -12,15 +13,12 @@ class Mod {
 		File modFolder = new File(path);
 		File[] listOfFilesAndFolders = modFolder.listFiles();
 		try {
-			listOfMods = new File[listOfFilesAndFolders.length / 2];
-			byte j = 0;
 			for (File file : listOfFilesAndFolders) {
 				if (isMod(file)) {
-					listOfMods[j] = file;
-					j++;
+					listOfMods.add(file);
 				}
 			}
-			Tool.checkedMods = new String[listOfMods.length];
+			Tool.checkedMods = new String[listOfMods.size()];
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, "Your mod folder is empty :(");
 			System.exit(0);
