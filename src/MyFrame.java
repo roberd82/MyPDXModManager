@@ -5,10 +5,7 @@ class MyFrame extends JFrame {
 
 	private static JCheckBox[] checkBoxes;
 
-	MyFrame() {
-		JComboBox gameCB = new JComboBox(Mod.games);
-		JOptionPane.showMessageDialog(null, gameCB, "Choose the game:", JOptionPane.PLAIN_MESSAGE);
-		int game = gameCB.getSelectedIndex();
+	MyFrame(int game) {
 		Mod.getMods(game);
 		this.setTitle("My Paradox Mod Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

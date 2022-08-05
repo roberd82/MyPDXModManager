@@ -13,7 +13,6 @@ class Tool {
 			if (checkedMod != null) {
 				toBeWrittenMods.add(checkedMod);
 			}
-
 		}
 
 		try {
