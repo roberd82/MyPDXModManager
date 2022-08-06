@@ -7,16 +7,29 @@ class Tool {
 
 	static String[] checkedMods;
 
-	static void write(int game) {
+	static void write(int os, int game) {
 		ArrayList<String> toBeWrittenMods = new ArrayList<>();
 		for (String checkedMod : checkedMods) {
 			if (checkedMod != null) {
 				toBeWrittenMods.add(checkedMod);
 			}
 		}
-
+		String path = "";
+		
+		switch (os) {
+			case 0:
+				path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Paradox Interactive\\" + Mod.games[game] + "\\dlc_load.json";
+				break;
+			case 1:
+				path = "/home/" + System.getProperty("user.name") + "/.paradoxinteractive/Crusader Kings II/dlc_load.json";
+				break;
+			case 2:
+				path = "~/Documents/Paradox Interctive/" + Mod.games[game] + "/dlc_lod.json";	//probablly not good
+			default:
+				break;
+		}
+		
 		try {
-		String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Paradox Interactive\\" + Mod.games[game] + "\\dlc_load.json";
 		BufferedWriter bfw = new BufferedWriter(new FileWriter(path));
 
 		StringBuilder string = new StringBuilder("{\"disabled_dlcs\":[],\"enabled_mods\":[");

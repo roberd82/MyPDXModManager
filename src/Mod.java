@@ -7,10 +7,20 @@ class Mod {
 	static String[] games = {"Crusader Kings II", "Crusader Kings III", "Europa Universalis IV", "Hearts of Iron IV"};
 	static ArrayList<File> listOfMods = new ArrayList<>();
 
-	static void getMods(int game) {
-
-		String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Paradox Interactive\\" + games[game] + "\\mod";
-		File modFolder = new File(path);
+	static void getMods(int os, int game) {
+		String path = "";
+		switch (os) {
+			case 0:
+				path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Paradox Interactive\\" + Mod.games[game] + "\\mod";
+				break;
+			case 1:
+				path = "/home/" + System.getProperty("user.name") + "/.paradoxinteractive/Crusader Kings II/mod/";
+				break;
+			case 2:
+				path = "~/Documents/Paradox Interctive/Crusader Kings II/mod";	//probablly not good
+			default:
+				break;
+		}		File modFolder = new File(path);
 		File[] listOfFilesAndFolders = modFolder.listFiles();
 		try {
 			for (File file : listOfFilesAndFolders) {

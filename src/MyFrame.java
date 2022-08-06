@@ -5,8 +5,8 @@ class MyFrame extends JFrame {
 
 	private static JCheckBox[] checkBoxes;
 
-	MyFrame(int game) {
-		Mod.getMods(game);
+	MyFrame(int os, int game) {
+		Mod.getMods(os, game);
 		this.setTitle("My Paradox Mod Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new GridLayout(Mod.listOfMods.size() + 2, 1));
@@ -17,7 +17,7 @@ class MyFrame extends JFrame {
 
 		JButton buttonSave = new JButton("Save");
 		buttonSave.addActionListener(e -> {
-			Tool.write(game);
+			Tool.write(os, game);
 			label.setText("The mod config was saved :)");
 		});
 
