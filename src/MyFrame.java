@@ -32,7 +32,7 @@ class MyFrame extends JFrame {
 		for (int i = 0; i < checkBoxes.length; i++) {
 			checkBoxes[i] = new JCheckBox();
 			checkBoxes[i].setText(Mod.listOfMods.get(i).getName());
-			System.out.println(checkBoxes[i].getText());
+			//System.out.println(checkBoxes[i].getText());
 			int finalI = i;
 			checkBoxes[i].addActionListener(e -> {
 				if (Tool.checkedMods[finalI] == null) {
