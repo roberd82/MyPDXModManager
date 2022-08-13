@@ -24,7 +24,7 @@ class Tool {
 				path = "/home/" + System.getProperty("user.name") + "/.paradoxinteractive/Crusader Kings II/dlc_load.json";
 				break;
 			case 2:
-				path = "~/Documents/Paradox Interctive/" + Mod.games[game] + "/dlc_lod.json";	//probablly not good
+				path = "/Users/" + System.getProperty("user.name") + "/Documents/Paradox Interctive/" + Mod.games[game] + "/dlc_lod.json";	//probablly not good
 			default:
 				break;
 		}

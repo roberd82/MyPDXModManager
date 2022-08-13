@@ -17,7 +17,7 @@ class Mod {
 				path = "/home/" + System.getProperty("user.name") + "/.paradoxinteractive/Crusader Kings II/mod/";
 				break;
 			case 2:
-				path = "~/Documents/Paradox Interctive/Crusader Kings II/mod";	//probablly not good
+				path = "/Users/" + System.getProperty("user.name") + "/Documents/Paradox Interctive/Crusader Kings II/mod";	//probablly not good
 			default:
 				break;
 		}		File modFolder = new File(path);
