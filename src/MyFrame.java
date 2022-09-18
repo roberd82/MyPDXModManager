@@ -35,10 +35,10 @@ class MyFrame extends JFrame {
 			//System.out.println(checkBoxes[i].getText());
 			int finalI = i;
 			checkBoxes[i].addActionListener(e -> {
-				if (Tool.checkedMods[finalI] == null) {
-					Tool.checkedMods[finalI] = checkBoxes[finalI].getText();
+				if (Mod.checkedMods[finalI] == null) {
+					Mod.checkedMods[finalI] = checkBoxes[finalI].getText();
 				} else {
-					Tool.checkedMods[finalI] = null;
+					Mod.checkedMods[finalI] = null;
 				}
 			});
 			this.add(checkBoxes[i]);

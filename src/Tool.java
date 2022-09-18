@@ -5,11 +5,9 @@ import java.util.ArrayList;
 
 class Tool {
 
-	static String[] checkedMods;
-
 	static void write(int os, int game) {
 		ArrayList<String> toBeWrittenMods = new ArrayList<>();
-		for (String checkedMod : checkedMods) {
+		for (String checkedMod : Mod.checkedMods) {
 			if (checkedMod != null) {
 				toBeWrittenMods.add(checkedMod);
 			}

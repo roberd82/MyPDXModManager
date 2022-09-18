@@ -6,6 +6,7 @@ class Mod {
 
 	static String[] games = {"Crusader Kings III", "Europa Universalis IV", "Hearts of Iron IV"};
 	static ArrayList<File> listOfMods = new ArrayList<>();
+	static String[] checkedMods;
 
 	static void getMods(int os, int game) {
 		String path = "";
@@ -28,7 +29,7 @@ class Mod {
 					listOfMods.add(file);
 				}
 			}
-			Tool.checkedMods = new String[listOfMods.size()];
+			checkedMods = new String[listOfMods.size()];
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, "Your mod folder is empty :(");
 			System.exit(0);
