@@ -8,20 +8,21 @@ class Mod {
 	static ArrayList<File> listOfMods = new ArrayList<>();
 	static String[] checkedMods;
 
-	static void getMods(int os, int game) {
-		String path = "";
+	static void getMods(byte os, byte game) {
+		String path = Tool.getPath(os, game);
 		switch (os) {
 			case 0:
-				path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Paradox Interactive\\" + Mod.games[game] + "\\mod";
+				path = path + "\\mod";
 				break;
 			case 1:
-				path = "/home/" + System.getProperty("user.name") + "/.paradoxinteractive/Crusader Kings II/mod/";
+				path = path + "/mod/";
 				break;
 			case 2:
-				path = "/Users/" + System.getProperty("user.name") + "/Documents/Paradox Interctive/Crusader Kings II/mod";	//probablly not good
+				path = path + "/mod";	//probablly not good
 			default:
 				break;
-		}		File modFolder = new File(path);
+		}
+		File modFolder = new File(path);
 		File[] listOfFilesAndFolders = modFolder.listFiles();
 		try {
 			for (File file : listOfFilesAndFolders) {

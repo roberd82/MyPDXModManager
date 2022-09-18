@@ -5,7 +5,7 @@ class MyFrame extends JFrame {
 
 	private static JCheckBox[] checkBoxes;
 
-	MyFrame(int os, int game) {
+	MyFrame(byte os, byte game) {
 		Mod.getMods(os, game);
 		this.setTitle("My Paradox Mod Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +32,6 @@ class MyFrame extends JFrame {
 		for (int i = 0; i < checkBoxes.length; i++) {
 			checkBoxes[i] = new JCheckBox();
 			checkBoxes[i].setText(Mod.listOfMods.get(i).getName());
-			//System.out.println(checkBoxes[i].getText());
 			int finalI = i;
 			checkBoxes[i].addActionListener(e -> {
 				if (Mod.checkedMods[finalI] == null) {
