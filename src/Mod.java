@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class Mod {
 
-	static String[] games = {"Crusader Kings III", "Europa Universalis IV", "Hearts of Iron IV"};
+	static String[] games = {"Crusader Kings III", "Europa Universalis IV", "Victoria 3", "Hearts of Iron IV"};
 	static ArrayList<File> listOfMods = new ArrayList<>();
 	static String[] checkedMods;
 
