@@ -36,10 +36,9 @@ class Tool {
 				path = path + "\\dlc_load.json";
 				break;
 			case 1:
-				path = path + "/dlc_load.json";
-				break;
 			case 2:
-				path = path + "/dlc_lod.json";	//probablly not good
+				path = path + "/dlc_load.json";
+				break;//probablly not good
 			default:
 				break;
 		}
