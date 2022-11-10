@@ -21,9 +21,18 @@ class Mod {
 		File modFolder = new File(Tool.path);
 		File[] listOfFilesAndFolders = modFolder.listFiles();
 		try {
-			for (File file : listOfFilesAndFolders) {
-				if (isMod(file)) {
-					listOfMods.add(file);
+			assert listOfFilesAndFolders != null;
+			if (Main.game.equals("Victoria 3")) {
+				for (File file : listOfFilesAndFolders) {
+					if (isVic3Mod(file)) {
+						listOfMods.add(file);
+					}
+				}
+			} else {
+				for (File file : listOfFilesAndFolders) {
+					if (isMod(file)) {
+						listOfMods.add(file);
+					}
 				}
 			}
 			checkedMods = new String[listOfMods.size()];
@@ -36,5 +45,9 @@ class Mod {
 
 	private static boolean isMod(File file) {
 		return !file.isDirectory() && file.getName().charAt(file.getName().length() - 3) == 'm' && file.getName().charAt(file.getName().length() - 2) == 'o' && file.getName().charAt(file.getName().length() - 1) == 'd';
+	}
+
+	private static boolean isVic3Mod(File file) {
+		return file.isDirectory();
 	}
 }

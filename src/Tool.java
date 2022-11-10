@@ -2,6 +2,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 class Tool {
 
@@ -23,10 +24,18 @@ class Tool {
 		try {
 			path = getPath();
 
-			if (Main.os.equals(Main.oss[0])) {
-				path = path + "\\dlc_load.json";
-			} else if (Main.os.equals(Main.oss[1]) || Main.os.equals(Main.oss[2])) {
-				path = path + "/dlc_load.json";
+			if (Main.game.equals("Victoria 3")) {
+				if (Main.os.equals(Main.oss[0])) {
+					path = path + "\\content_load.json";
+				} else if (Main.os.equals(Main.oss[1]) || Main.os.equals(Main.oss[2])) {
+					path = path + "/content_load.json";
+				}
+			} else {
+				if (Main.os.equals(Main.oss[0])) {
+					path = path + "\\dlc_load.json";
+				} else if (Main.os.equals(Main.oss[1]) || Main.os.equals(Main.oss[2])) {
+					path = path + "/dlc_load.json";
+				}
 			}
 
 			assert path != null;
@@ -39,19 +48,37 @@ class Tool {
 				}
 			}
 
-			StringBuilder string = new StringBuilder("{\"disabled_dlcs\":[],\"enabled_mods\":[");
-			for (int i = 0; i < toBeWrittenMods.size(); i++) {
-				string.append("\"mod/");
-				string.append(toBeWrittenMods.get(i));
-				if (i != toBeWrittenMods.size() - 1) {
-					string.append("\",");
-				} else {
-					string.append("\"");
-				}
-			}
-			string.append("]}");
+			StringBuilder string;
+			if (Main.game.equals("Victoria 3")) {
+				string = new StringBuilder("{\"enabledMods\":[");
 
+				for (int i = 0; i < toBeWrittenMods.size(); i++) {
+					string.append("{\"path\":\"");
+					string.append(Objects.requireNonNull(getPath()).replace("\\", "\\\\"));
+					string.append("\\\\mod\\\\");
+					string.append(toBeWrittenMods.get(i));
+					if (i != toBeWrittenMods.size() - 1) {
+						string.append("\"},");
+					} else {
+						string.append("\"}");
+					}
+				}
+				string.append("],\"disabledDLC\":[]}");
+			} else {
+				string = new StringBuilder("{\"disabled_dlcs\":[],\"enabled_mods\":[");
+				for (int i = 0; i < toBeWrittenMods.size(); i++) {
+					string.append("\"mod/");
+					string.append(toBeWrittenMods.get(i));
+					if (i != toBeWrittenMods.size() - 1) {
+						string.append("\",");
+					} else {
+						string.append("\"");
+					}
+				}
+				string.append("]}");
+			}
 			bfw.write(string.toString());
+
 			bfw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
