@@ -5,46 +5,39 @@ import java.util.ArrayList;
 
 class Tool {
 
-	static String getPath(byte os, byte game) {
-		String path = "";
-		switch (os) {
-			case 0:
-				path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Paradox Interactive\\" + Mod.games[game];
-				break;
-			case 1:
-				path = "/home/" + System.getProperty("user.name") + "/.paradoxinteractive/" + Mod.games[game];
-				break;
-			case 2:
-				path = "/Users/" + System.getProperty("user.name") + "/Documents/Paradox Interctive/" + Mod.games[game];	//probablly not good
-			default:
-				break;
+	static String path;
+
+	static String getPath() {
+		if (Main.os.equals(Main.oss[0])) {
+			return  "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Paradox Interactive\\" + Main.game;
+		} else if (Main.os.equals(Main.oss[1])) {
+			return  "/home/" + System.getProperty("user.name") + "/.paradoxinteractive/" + Main.game;
+		} else if (Main.os.equals(Main.oss[2])) {
+			return  "/Users/" + System.getProperty("user.name") + "/Documents/Paradox Interctive/" + Main.game;	//probablly not good
 		}
-		return path;
+
+		return null;
 	}
 
-	static void write(byte os, byte game) {
-		ArrayList<String> toBeWrittenMods = new ArrayList<>();
-		for (String checkedMod : Mod.checkedMods) {
-			if (checkedMod != null) {
-				toBeWrittenMods.add(checkedMod);
-			}
-		}
-
-		String path = getPath(os, game);
-		switch (os) {
-			case 0:
-				path = path + "\\dlc_load.json";
-				break;
-			case 1:
-			case 2:
-				path = path + "/dlc_load.json";
-				break;//probablly not good
-			default:
-				break;
-		}
-		
+	static void write() {
 		try {
+			path = getPath();
+
+			if (Main.os.equals(Main.oss[0])) {
+				path = path + "\\dlc_load.json";
+			} else if (Main.os.equals(Main.oss[1]) || Main.os.equals(Main.oss[2])) {
+				path = path + "/dlc_load.json";
+			}
+
+			assert path != null;
 			BufferedWriter bfw = new BufferedWriter(new FileWriter(path));
+
+			ArrayList<String> toBeWrittenMods = new ArrayList<>();
+			for (String checkedMod : Mod.checkedMods) {
+				if (checkedMod != null) {
+					toBeWrittenMods.add(checkedMod);
+				}
+			}
 
 			StringBuilder string = new StringBuilder("{\"disabled_dlcs\":[],\"enabled_mods\":[");
 			for (int i = 0; i < toBeWrittenMods.size(); i++) {

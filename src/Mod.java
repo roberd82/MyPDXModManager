@@ -4,25 +4,21 @@ import java.util.ArrayList;
 
 class Mod {
 
-	static String[] games = {"Crusader Kings III", "Europa Universalis IV", "Victoria 3", "Hearts of Iron IV"};
+
 	static ArrayList<File> listOfMods = new ArrayList<>();
 	static String[] checkedMods;
 
-	static void getMods(byte os, byte game) {
-		String path = Tool.getPath(os, game);
-		switch (os) {
-			case 0:
-				path = path + "\\mod";
-				break;
-			case 1:
-				path = path + "/mod/";
-				break;
-			case 2:
-				path = path + "/mod";	//probablly not good
-			default:
-				break;
+	static void getMods() {
+		Tool.path = Tool.getPath();
+
+		if (Main.os.equals(Main.oss[0])) {
+			Tool.path = Tool.path + "\\mod";
+		} else if (Main.os.equals(Main.oss[1]) ||Main.os.equals(Main.oss[2])) {
+			Tool.path = Tool.path + "/mod";
 		}
-		File modFolder = new File(path);
+
+		assert Tool.path != null;
+		File modFolder = new File(Tool.path);
 		File[] listOfFilesAndFolders = modFolder.listFiles();
 		try {
 			for (File file : listOfFilesAndFolders) {
